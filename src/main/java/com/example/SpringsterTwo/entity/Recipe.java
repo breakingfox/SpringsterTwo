@@ -31,6 +31,6 @@ public class Recipe {
     private Boolean is_private;
     @Column
     private String instruction;
-    @Column
-    private Long author_id;
+    @Column(name = "author_id")
+    private Long authorId;
 }

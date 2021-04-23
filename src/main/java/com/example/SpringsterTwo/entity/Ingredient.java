@@ -18,8 +18,8 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private Long recipe_id;
+    @Column(name = "recipe_id")
+    private Long recipeId;
     @Column
     private Long product_id;
     @Column

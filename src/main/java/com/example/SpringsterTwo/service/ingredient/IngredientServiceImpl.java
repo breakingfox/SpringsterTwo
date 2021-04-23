@@ -4,7 +4,6 @@ import com.example.SpringsterTwo.dto.IngredientDto;
 import com.example.SpringsterTwo.entity.Ingredient;
 import com.example.SpringsterTwo.exception.ValidationException;
 import com.example.SpringsterTwo.repository.IngredientRepository;
-import com.example.SpringsterTwo.service.ingredient.IngredientConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +30,11 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public void deleteIngredient(Long id) {
         ingredientRepository.deleteById(id);
+    }
+
+    @Override
+    public List<IngredientDto> findByRecipe_id(Long recipe_id) {
+        return ingredientRepository.findByRecipeId(recipe_id).stream().map(ingredientConverter::fromIngredientToIngredientDto).collect(Collectors.toList());
     }
 //
 //    @Override

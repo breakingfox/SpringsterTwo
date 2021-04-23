@@ -11,7 +11,7 @@ public interface IngredientService {
 
     void deleteIngredient(Long id);
 
-   // List<IngredientDto> findByRecipe_id(Long recipe_id);
+    List<IngredientDto> findByRecipe_id(Long recipe_id);
 
     List<IngredientDto> findAll();
 }

@@ -11,12 +11,14 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RecipeDto {
+public class RecipeFullDto {
     private Long id;
     private String name;
     private Integer time;
@@ -25,6 +27,7 @@ public class RecipeDto {
     private String instruction;
     private Boolean is_private;
     private Long author_id;
+    private List<IngredientNameDto> ingredientDtoList;
 
     public Recipe toRecipe() {
         return Recipe.builder().id(id)
@@ -38,10 +41,11 @@ public class RecipeDto {
                 .build();
     }
 
-    public RecipeDto fromRecipe(Recipe recipe) {
-        return RecipeDto.builder().id(recipe.getId())
+    public RecipeFullDto fromRecipe(Recipe recipe, List<IngredientNameDto> ingredientDtos) {
+        return RecipeFullDto.builder().id(recipe.getId())
                 .name(recipe.getName())
                 .author_id(recipe.getAuthorId())
+                .ingredientDtoList(ingredientDtos)
                 .ingredient_id(recipe.getIngredient_id())
                 .instruction(recipe.getInstruction())
                 .is_private(recipe.getIs_private())
