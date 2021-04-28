@@ -22,7 +22,6 @@ public class RecipeFullDto {
     private Long id;
     private String name;
     private Integer time;
-    private Integer ingredient_id;
     private String type;
     private String instruction;
     private Boolean is_private;
@@ -33,7 +32,6 @@ public class RecipeFullDto {
         return Recipe.builder().id(id)
                 .name(name)
                 .authorId(author_id)
-                .ingredient_id(ingredient_id)
                 .instruction(instruction)
                 .is_private(is_private)
                 .time(time)
@@ -46,7 +44,6 @@ public class RecipeFullDto {
                 .name(recipe.getName())
                 .author_id(recipe.getAuthorId())
                 .ingredientDtoList(ingredientDtos)
-                .ingredient_id(recipe.getIngredient_id())
                 .instruction(recipe.getInstruction())
                 .is_private(recipe.getIs_private())
                 .time(recipe.getTime())

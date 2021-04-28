@@ -19,6 +19,7 @@ public class IngredientNameDto {
 
     private Long id;
     private Long recipe_id;
+    private Long product_id;
     private String productName;
     private String unit;
     private Long quantity;

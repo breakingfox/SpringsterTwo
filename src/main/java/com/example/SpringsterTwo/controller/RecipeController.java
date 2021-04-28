@@ -50,6 +50,13 @@ public class RecipeController {
         return recipeService.fullInfoById(id);
     }
 
+    //сохранение полного рецепта
+    @PostMapping("/saveFull")
+    public RecipeFullDto saveRecipe(@RequestBody RecipeFullDto recipeFullDto) throws ValidationException {
+        log.info("Handling saving full recipe: " + recipeFullDto);
+        return recipeService.saveRecipeFull(recipeFullDto);
+    }
+
     //кастомные рецепты пользователя
     @GetMapping("/fullInfoByUser/{id}")
     public List<RecipeFullDto> fullInfoByUserId(@PathVariable Long id) {

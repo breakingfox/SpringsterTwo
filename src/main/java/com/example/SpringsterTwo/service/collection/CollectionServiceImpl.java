@@ -14,9 +14,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CollectionServiceImpl implements CollectionService {
-    @Autowired
-    CollectionRepository collectionRepository;
-    CollectionConverter collectionConverter;
+  private final   CollectionRepository collectionRepository;
+  private final   CollectionConverter collectionConverter;
 
     @Override
     public CollectionDto findRecipeByCollectionId(Long id) {

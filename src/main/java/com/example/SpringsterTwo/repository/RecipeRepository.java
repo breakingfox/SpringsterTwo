@@ -10,5 +10,6 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByNameIgnoreCase(String name);
     List<Recipe> findByAuthorId(Long id);
-    List<Recipe> findAllByIdAfter(Long id);
+    List<Recipe> findTop9AllByIdAfter(Long id);
+
 }

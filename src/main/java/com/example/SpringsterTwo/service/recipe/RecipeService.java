@@ -16,6 +16,9 @@ public interface RecipeService {
 
     RecipeFullDto fullInfoById(Long id);
 
+    RecipeFullDto saveRecipeFull(RecipeFullDto recipeFullDto) throws ValidationException;
+
+
     List<RecipeDto> findAll();
 
     List<RecipeFullDto> findByUserId(Long id);

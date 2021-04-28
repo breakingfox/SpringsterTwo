@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SpringsterTwoApplicationTests {
     @Autowired
     ProductRepository productRepository;
+    RecipeRepository recipeRepository;
 
     @Test
     void contextLoads() {
@@ -43,25 +44,25 @@ class SpringsterTwoApplicationTests {
             log.info(faker.food().dish());
     }
 
-    @Test
-    void productFill() {
-        EasyRandomParameters parameters = new EasyRandomParameters();
-        Faker faker = new Faker(new Locale("ru"));
-
-        parameters.stringLengthRange(3, 5);
-        parameters.randomize(Integer.class, IntegerRangeRandomizer.aNewIntegerRangeRandomizer(0, 150));
-        parameters.randomize(Long.class, LongRangeRandomizer.aNewLongRangeRandomizer(0L, 150L));
-        parameters.randomize(String.class, () -> faker.food().dish());
-        parameters.excludeField(FieldPredicates.named("id"));
-        EasyRandom generator = new EasyRandom(parameters);
-        List<Product> products = generator.objects(Product.class, 5)
-                .collect(Collectors.toList());
-        for (Product x :
-                products)
-            log.info(String.valueOf(x));
-        assertEquals(5, products.size());
-        for (Product x :
-                products)
-            productRepository.save(x);
-    }
+//    @Test
+//    void productFill() {
+//        EasyRandomParameters parameters = new EasyRandomParameters();
+//        Faker faker = new Faker(new Locale("ru"));
+//
+//        parameters.stringLengthRange(3, 5);
+//        parameters.randomize(Integer.class, IntegerRangeRandomizer.aNewIntegerRangeRandomizer(0, 150));
+//        parameters.randomize(Long.class, LongRangeRandomizer.aNewLongRangeRandomizer(0L, 150L));
+//        parameters.randomize(String.class, () -> faker.food().dish());
+//        parameters.excludeField(FieldPredicates.named("id"));
+//        EasyRandom generator = new EasyRandom(parameters);
+//        List<Product> products = generator.objects(Product.class, 5)
+//                .collect(Collectors.toList());
+//        for (Product x :
+//                products)
+//            log.info(String.valueOf(x));
+//        assertEquals(5, products.size());
+//        for (Product x :
+//                products)
+//            productRepository.save(x);
+//    }
 }

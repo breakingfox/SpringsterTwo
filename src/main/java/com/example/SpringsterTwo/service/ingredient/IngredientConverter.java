@@ -7,6 +7,7 @@ import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
 @AllArgsConstructor
 @Component
 public class IngredientConverter {
@@ -37,8 +38,19 @@ public class IngredientConverter {
                 .id(ingredient.getId())
                 .productName(productRepository.findById(ingredient.getProduct_id()).get().getName())
                 .quantity(ingredient.getQuantity())
+                .product_id(ingredient.getProduct_id())
                 .recipe_id(ingredient.getRecipeId())
                 .unit(ingredient.getUnit())
+                .build();
+    }
+
+    public IngredientDto fromIngredientNameDtoToIngredientDto(IngredientNameDto ingredient) {
+        return IngredientDto.builder()
+                .id(ingredient.getId())
+                .quantity(ingredient.getQuantity())
+                .recipe_id(ingredient.getRecipe_id())
+                .unit(ingredient.getUnit())
+                .product_id(ingredient.getProduct_id())
                 .build();
     }
 }

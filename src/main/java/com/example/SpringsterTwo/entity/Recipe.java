@@ -24,8 +24,6 @@ public class Recipe {
     @Column
     private Integer time;
     @Column
-    private Integer ingredient_id;
-    @Column
     private String type;
     @Column
     private Boolean is_private;
