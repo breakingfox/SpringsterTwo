@@ -22,9 +22,9 @@ public class CollectionConverter {
 
     private final CollectionRepository collectionRepository;
     private final RecipeConverter recipeConverter;
-
-//    public Collection toCollection() {
-//        return Recipe.builder().id(id)//
+//
+//    public Collection toCollectionfromCollectionDto(CollectionDto collectionDto) {
+//        return Collection.builder().id(collectionDto.g)
 //                .build();
 //    }
 

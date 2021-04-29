@@ -14,7 +14,6 @@ public class ProductConverter {
     private final ProductRepository productRepository;
     public Product fromProductDtoToProduct(ProductDto productDto) {
         Product product = new Product();
-        product.setId(productDto.getId());
         product.setName(productDto.getName());
         return product;
     }

@@ -15,7 +15,6 @@ public class IngredientConverter {
 
     public Ingredient fromIngredientDtoToIngredient(IngredientDto ingredientDto) {
         return Ingredient.builder()
-                .id(ingredientDto.getId())
                 .product_id(ingredientDto.getProduct_id())
                 .quantity(ingredientDto.getQuantity())
                 .recipeId(ingredientDto.getRecipe_id())

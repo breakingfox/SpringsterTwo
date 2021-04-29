@@ -12,6 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class CollectionRel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NonNull
     @Column(name = "recipe_id")
     private Long recipeId;

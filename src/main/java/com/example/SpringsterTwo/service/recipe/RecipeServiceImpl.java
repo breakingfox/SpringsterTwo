@@ -3,6 +3,7 @@ package com.example.SpringsterTwo.service.recipe;
 
 import com.example.SpringsterTwo.dto.*;
 import com.example.SpringsterTwo.entity.Ingredient;
+import com.example.SpringsterTwo.entity.Product;
 import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.exception.ValidationException;
 import com.example.SpringsterTwo.repository.IngredientRepository;
@@ -66,38 +67,25 @@ public class RecipeServiceImpl implements RecipeService {
     public RecipeFullDto saveRecipeFull(RecipeFullDto recipeFullDto) throws ValidationException {
         List<IngredientNameDto> listIngredient = recipeFullDto.getIngredientDtoList();
 
+        Recipe testRecipe = recipeFullDto.toRecipe();
+        Recipe savedRecipe = recipeRepository.saveAndFlush(testRecipe);
         //лист дто с продуктами для сохранения
         List<ProductDto> productDtoList = listIngredient.stream().map(productConverter::fromIngredientNameDtoToProductDto).collect(Collectors.toList());
 
         //получили лист дто ингредиентов для сохранения
         List<IngredientDto> ingredientDtoList = listIngredient.stream().map(ingredientConverter::fromIngredientNameDtoToIngredientDto).collect(Collectors.toList());
-        for (ProductDto cur : productDtoList
-        ) {
+        //связываем айдишники рецептов, ингредиентов и продуктов
+        for (int i = 0; i < ingredientDtoList.size(); i++) {
             try {
-                productService.saveProduct(cur);
-
+                ProductDto tempProduct = productService.saveProduct(productDtoList.get(i));
+                ingredientDtoList.get(i).setRecipe_id(savedRecipe.getId());
+                ingredientDtoList.get(i).setProduct_id(tempProduct.getId());
+                ingredientService.saveIngredient(ingredientDtoList.get(i));
             } catch (ValidationException e) {
                 throw e;
             }
         }
-        for (IngredientDto cur : ingredientDtoList
-        ) {
-            try {
-                ingredientService.saveIngredient(cur);
-
-            } catch (ValidationException e) {
-                throw e;
-
-            }
-        }
-        //   #TODO доделать сохранение
-//
-
-        Recipe testRecipe = recipeFullDto.toRecipe();
-        Recipe savedRecipe = recipeRepository.saveAndFlush(testRecipe);
-
         return recipeConverter.fromRecipe(savedRecipe);
-
     }
 
     @Override

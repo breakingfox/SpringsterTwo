@@ -27,9 +27,9 @@ public class RecipeFullDto {
     private Boolean is_private;
     private Long author_id;
     private List<IngredientNameDto> ingredientDtoList;
-
+//в рецепт не передаем айди для автоинкремента
     public Recipe toRecipe() {
-        return Recipe.builder().id(id)
+        return Recipe.builder()
                 .name(name)
                 .authorId(author_id)
                 .instruction(instruction)
