@@ -26,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;

@@ -3,8 +3,6 @@ package com.example.SpringsterTwo.dto;
 import com.example.SpringsterTwo.entity.users.Role;
 import com.example.SpringsterTwo.entity.users.Status;
 
-import javax.persistence.*;
-
 public class AccountDto {
     //TODO класс для передачи данных со страницы регистрации в юзера
     private Long id;

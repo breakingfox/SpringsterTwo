@@ -1,9 +1,7 @@
 package com.example.SpringsterTwo.repository;
 
-import com.example.SpringsterTwo.dto.CollectionDto;
 import com.example.SpringsterTwo.entity.Collection;
 import com.example.SpringsterTwo.entity.Recipe;
-import com.example.SpringsterTwo.entity.RecipeProj;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

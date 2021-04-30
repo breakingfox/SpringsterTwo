@@ -2,7 +2,6 @@ package com.example.SpringsterTwo.service.product;
 
 import com.example.SpringsterTwo.dto.ProductDto;
 import com.example.SpringsterTwo.exception.ValidationException;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

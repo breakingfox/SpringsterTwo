@@ -1,9 +1,5 @@
 package com.example.SpringsterTwo.entity;
 
-import lombok.Getter;
-
-import java.io.Serializable;
-
 public interface RecipeProj {
     Long getId();
     String getName();

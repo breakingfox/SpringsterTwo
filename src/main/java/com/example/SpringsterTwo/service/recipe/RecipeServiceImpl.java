@@ -2,8 +2,6 @@ package com.example.SpringsterTwo.service.recipe;
 
 
 import com.example.SpringsterTwo.dto.*;
-import com.example.SpringsterTwo.entity.Ingredient;
-import com.example.SpringsterTwo.entity.Product;
 import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.exception.ValidationException;
 import com.example.SpringsterTwo.repository.IngredientRepository;

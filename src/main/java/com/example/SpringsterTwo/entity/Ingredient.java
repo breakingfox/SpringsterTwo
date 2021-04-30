@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 
 @Entity

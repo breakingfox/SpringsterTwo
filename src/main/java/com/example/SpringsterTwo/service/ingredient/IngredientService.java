@@ -1,7 +1,6 @@
 package com.example.SpringsterTwo.service.ingredient;
 
 import com.example.SpringsterTwo.dto.IngredientDto;
-import com.example.SpringsterTwo.dto.ProductDto;
 import com.example.SpringsterTwo.exception.ValidationException;
 
 import java.util.List;

@@ -3,7 +3,6 @@ package com.example.SpringsterTwo.service.ingredient;
 import com.example.SpringsterTwo.dto.IngredientDto;
 import com.example.SpringsterTwo.dto.IngredientNameDto;
 import com.example.SpringsterTwo.entity.Ingredient;
-import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

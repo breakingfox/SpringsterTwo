@@ -2,7 +2,6 @@ package com.example.SpringsterTwo.service.recipe;
 
 import com.example.SpringsterTwo.dto.RecipeDto;
 import com.example.SpringsterTwo.dto.RecipeFullDto;
-import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.exception.ValidationException;
 
 import java.util.List;

@@ -1,19 +1,14 @@
 package com.example.SpringsterTwo.service.collection;
 
 import com.example.SpringsterTwo.dto.CollectionDto;
-import com.example.SpringsterTwo.dto.RecipeFullDto;
 import com.example.SpringsterTwo.entity.Collection;
-import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.repository.CollectionRepository;
 import com.example.SpringsterTwo.service.recipe.RecipeConverter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.rmi.server.LogStream.log;
 
 @Slf4j
 @Component

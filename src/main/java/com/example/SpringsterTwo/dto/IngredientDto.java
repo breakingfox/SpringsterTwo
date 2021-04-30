@@ -3,8 +3,6 @@ package com.example.SpringsterTwo.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
-
 @Data
 @Builder
 public class IngredientDto {

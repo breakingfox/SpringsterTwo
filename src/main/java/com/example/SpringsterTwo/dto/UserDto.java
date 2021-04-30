@@ -4,8 +4,6 @@ import com.example.SpringsterTwo.entity.users.Role;
 import com.example.SpringsterTwo.entity.users.User;
 import lombok.Data;
 
-import javax.persistence.*;
-
 @Data
 public class UserDto {
     private Long id;

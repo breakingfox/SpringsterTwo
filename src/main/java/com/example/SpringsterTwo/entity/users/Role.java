@@ -2,8 +2,8 @@ package com.example.SpringsterTwo.entity.users;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.stream.Collectors;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public enum Role {
     USER(Set.of(Permission.DEVELOPERS_READ)),

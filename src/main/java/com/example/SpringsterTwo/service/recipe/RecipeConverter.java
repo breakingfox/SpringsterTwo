@@ -1,6 +1,5 @@
 package com.example.SpringsterTwo.service.recipe;
 
-import com.example.SpringsterTwo.dto.IngredientNameDto;
 import com.example.SpringsterTwo.dto.RecipeDto;
 import com.example.SpringsterTwo.dto.RecipeFullDto;
 import com.example.SpringsterTwo.entity.Recipe;
@@ -9,7 +8,6 @@ import com.example.SpringsterTwo.service.ingredient.IngredientConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 //

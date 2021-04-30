@@ -1,7 +1,5 @@
 package com.example.SpringsterTwo.dto;
 
-import com.example.SpringsterTwo.entity.Collection;
-import com.example.SpringsterTwo.entity.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
