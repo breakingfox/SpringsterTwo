@@ -2,10 +2,15 @@ package com.example.SpringsterTwo.controller;
 
 import com.example.SpringsterTwo.dto.RecipeDto;
 import com.example.SpringsterTwo.dto.RecipeFullDto;
+import com.example.SpringsterTwo.dto.RecipeFullDtoPhoto;
+import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.exception.ValidationException;
+import com.example.SpringsterTwo.repository.RecipeRepository;
+import com.example.SpringsterTwo.service.recipe.RecipeConverter;
 import com.example.SpringsterTwo.service.recipe.RecipeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +21,9 @@ import java.util.List;
 @AllArgsConstructor
 @Log
 public class RecipeController {
+    @Autowired
     private final RecipeService recipeService;
+    private final RecipeRepository repository;
 
     @PostMapping("/save")
     public RecipeDto saveRecipe(@RequestBody RecipeDto recipeDto) throws ValidationException {
@@ -52,9 +59,10 @@ public class RecipeController {
 
     //сохранение полного рецепта
     @PostMapping("/saveFull")
-    public RecipeFullDto saveRecipe(@RequestBody RecipeFullDto recipeFullDto) throws ValidationException {
-        log.info("Handling saving full recipe: " + recipeFullDto);
-        return recipeService.saveRecipeFull(recipeFullDto);
+    public RecipeFullDto saveRecipe(@ModelAttribute RecipeFullDtoPhoto recipeFullDtoPhoto) throws Exception {
+        log.info("Handling saving full recipe: " + recipeFullDtoPhoto);
+
+        return recipeService.saveRecipeFull(recipeFullDtoPhoto);
     }
 
     //кастомные рецепты пользователя

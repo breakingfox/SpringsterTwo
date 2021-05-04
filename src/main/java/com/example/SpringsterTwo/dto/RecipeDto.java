@@ -19,6 +19,7 @@ public class RecipeDto {
     private String instruction;
     private Boolean is_private;
     private Long author_id;
+    private String photo;
 
     public Recipe toRecipe() {
         return Recipe.builder().id(id)

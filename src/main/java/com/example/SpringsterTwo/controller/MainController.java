@@ -1,6 +1,8 @@
 package com.example.SpringsterTwo.controller;
 
+import com.example.SpringsterTwo.dto.CollectionDto;
 import com.example.SpringsterTwo.dto.RecipeFullDto;
+import com.example.SpringsterTwo.dto.RecipeFullDtoPhoto;
 import com.example.SpringsterTwo.entity.Collection;
 import com.example.SpringsterTwo.entity.CollectionRel;
 import com.example.SpringsterTwo.exception.ValidationException;
@@ -25,7 +27,22 @@ public class MainController {
         log.info("Handling find 9 recipes request");
         return recipeService.findByIdAfter(0L);
     }
+    //кастомные рецепты пользователя
+    @GetMapping("/fullInfoByUser/{id}")
+    public List<RecipeFullDto> fullInfoByUserId(@PathVariable Long id) {
+        log.info("Handling full info about recipe request");
+        return recipeService.findByUserId(id);
+    }
 
+    @GetMapping("/collection/{id}")
+    public CollectionDto findCollection(@PathVariable Long id) {
+        return collectionService.findRecipeByCollectionId(id);
+    }
+
+    @GetMapping("/findUserCol/{id}")
+    public List<CollectionDto> findColByUserId(@PathVariable Long id) {
+        return collectionService.findColByUserId(id);
+    }
     @GetMapping("/listOfRecipes/{id}")
     public List<RecipeFullDto> listOfRecipesNum(@PathVariable Long id) {
         log.info("Handling find 9 recipes request");
@@ -33,9 +50,9 @@ public class MainController {
     }
     //сохранение полного рецепта
     @PostMapping("/saveRecipe")
-    public RecipeFullDto saveRecipe(@RequestBody RecipeFullDto recipeFullDto) throws ValidationException {
-        log.info("Handling saving full recipe: " + recipeFullDto);
-        return recipeService.saveRecipeFull(recipeFullDto);
+    public RecipeFullDto saveRecipe(@RequestBody RecipeFullDtoPhoto recipeFullDtoPhoto) throws Exception {
+        log.info("Handling saving full recipe: " + recipeFullDtoPhoto);
+        return recipeService.saveRecipeFull(recipeFullDtoPhoto);
     }
     @PostMapping("/addCollection")
     public Collection saveCollection(@RequestBody Collection collection) throws ValidationException {
@@ -49,5 +66,10 @@ public class MainController {
         log.info("Handling saving full recipe: " + collectionRel);
         return collectionService.addRecipe(collectionRel);
     }
-
+    //2 одинаковых метода с разными адресами
+    @GetMapping("/recipe/{id}")
+    public RecipeFullDto fullInfoById(@PathVariable Long id) {
+        log.info("Handling full info about recipe request");
+        return recipeService.fullInfoById(id);
+    }
 }

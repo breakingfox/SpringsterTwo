@@ -55,35 +55,36 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeFullDto fullInfoById(Long id) {
-        RecipeFullDto recipeFullDto = new RecipeFullDto().fromRecipe(recipeRepository.findById(id).get(), ingredientRepository.findByRecipeId(id).stream().map(ingredientConverter::toIngredientNameDto).collect(Collectors.toList()));
-        return recipeFullDto;
+      return   recipeConverter.fromRecipeToRecipeFullDto(recipeRepository.findById(id).get(), ingredientRepository.findByRecipeId(id).stream().map(ingredientConverter::toIngredientNameDto).collect(Collectors.toList()));
     }
 
 
     //сохранение полного рецепта для сайта
     @Override
-    public RecipeFullDto saveRecipeFull(RecipeFullDto recipeFullDto) throws ValidationException {
-        List<IngredientNameDto> listIngredient = recipeFullDto.getIngredientDtoList();
+    public RecipeFullDto saveRecipeFull(RecipeFullDtoPhoto recipeFullDtoPhoto) throws Exception {
+        List<IngredientNameDto> listIngredient = recipeFullDtoPhoto.getIngredientDtoList();
 
-        Recipe testRecipe = recipeFullDto.toRecipe();
+        Recipe testRecipe = recipeFullDtoPhoto.toRecipe();
         Recipe savedRecipe = recipeRepository.saveAndFlush(testRecipe);
-        //лист дто с продуктами для сохранения
-        List<ProductDto> productDtoList = listIngredient.stream().map(productConverter::fromIngredientNameDtoToProductDto).collect(Collectors.toList());
-
-        //получили лист дто ингредиентов для сохранения
-        List<IngredientDto> ingredientDtoList = listIngredient.stream().map(ingredientConverter::fromIngredientNameDtoToIngredientDto).collect(Collectors.toList());
-        //связываем айдишники рецептов, ингредиентов и продуктов
-        for (int i = 0; i < ingredientDtoList.size(); i++) {
-            try {
-                ProductDto tempProduct = productService.saveProduct(productDtoList.get(i));
-                ingredientDtoList.get(i).setRecipe_id(savedRecipe.getId());
-                ingredientDtoList.get(i).setProduct_id(tempProduct.getId());
-                ingredientService.saveIngredient(ingredientDtoList.get(i));
-            } catch (ValidationException e) {
-                throw e;
-            }
-        }
-        return recipeConverter.fromRecipe(savedRecipe);
+//        //лист дто с продуктами для сохранения
+//        List<ProductDto> productDtoList = listIngredient.stream().map(productConverter::fromIngredientNameDtoToProductDto).collect(Collectors.toList());
+//
+//        //получили лист дто ингредиентов для сохранения
+//        List<IngredientDto> ingredientDtoList = listIngredient.stream().map(ingredientConverter::fromIngredientNameDtoToIngredientDto).collect(Collectors.toList());
+//        //связываем айдишники рецептов, ингредиентов и продуктов
+//        for (int i = 0; i < ingredientDtoList.size(); i++) {
+//            try {
+//                ProductDto tempProduct = productService.saveProduct(productDtoList.get(i));
+//                ingredientDtoList.get(i).setRecipe_id(savedRecipe.getId());
+//                ingredientDtoList.get(i).setProduct_id(tempProduct.getId());
+//                ingredientService.saveIngredient(ingredientDtoList.get(i));
+//            } catch (ValidationException e) {
+//                throw e;
+//            }
+//        }
+        RecipeFullDto full = recipeConverter.fromRecipe(savedRecipe);
+        full.setPhoto(recipeRepository.findById(full.getId()).get().getPhoto());
+        return full;
     }
 
     @Override

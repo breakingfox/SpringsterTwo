@@ -29,6 +29,8 @@ public class Recipe {
     private Boolean is_private;
     @Column
     private String instruction;
+    @Column
+    private String photo;
     @Column(name = "author_id")
     private Long authorId;
 }

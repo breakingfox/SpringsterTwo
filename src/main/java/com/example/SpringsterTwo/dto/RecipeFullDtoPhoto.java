@@ -1,7 +1,13 @@
 package com.example.SpringsterTwo.dto;
 
 import com.example.SpringsterTwo.entity.Recipe;
-import com.example.SpringsterTwo.repository.RecipeRepository;
+import com.example.SpringsterTwo.service.ImgBBConverter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.service.ImgBBConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RecipeFullDto implements Serializable {
+public class RecipeFullDtoPhoto implements Serializable {
     private Long id;
     private String name;
     private Integer time;
@@ -25,9 +31,10 @@ public class RecipeFullDto implements Serializable {
     private String instruction;
     private Boolean is_private;
     private Long author_id;
-    private String photo;
+    private MultipartFile photo;
     private List<IngredientNameDto> ingredientDtoList;
-//в рецепт не передаем айди для автоинкремента
+
+    //в рецепт не передаем айди для автоинкремента
     public Recipe toRecipe() throws Exception {
         ImgBBConverter converter = new ImgBBConverter();
         return Recipe.builder()
@@ -50,7 +57,7 @@ public class RecipeFullDto implements Serializable {
                 .is_private(recipe.getIs_private())
                 .time(recipe.getTime())
                 //уберем для теста
-                .photo(recipe.getPhoto())
+                //  .photo(recipe.getPhoto())
                 .type(recipe.getType())
                 .build();
     }

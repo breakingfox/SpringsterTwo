@@ -2,6 +2,7 @@ package com.example.SpringsterTwo.service.recipe;
 
 import com.example.SpringsterTwo.dto.RecipeDto;
 import com.example.SpringsterTwo.dto.RecipeFullDto;
+import com.example.SpringsterTwo.dto.RecipeFullDtoPhoto;
 import com.example.SpringsterTwo.exception.ValidationException;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface RecipeService {
 
     RecipeFullDto fullInfoById(Long id);
 
-    RecipeFullDto saveRecipeFull(RecipeFullDto recipeFullDto) throws ValidationException;
+    RecipeFullDto saveRecipeFull(RecipeFullDtoPhoto recipeFullDtoPhoto) throws Exception;
 
 
     List<RecipeDto> findAll();
