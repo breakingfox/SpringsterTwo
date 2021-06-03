@@ -4,6 +4,7 @@ package com.example.SpringsterTwo.service.recipe;
 import com.example.SpringsterTwo.dto.*;
 import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.exception.ValidationException;
+import com.example.SpringsterTwo.repository.CollectionRelRepository;
 import com.example.SpringsterTwo.repository.IngredientRepository;
 import com.example.SpringsterTwo.repository.ProductRepository;
 import com.example.SpringsterTwo.repository.RecipeRepository;
@@ -24,7 +25,7 @@ import static java.util.Objects.isNull;
 public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeConverter recipeConverter;
-
+    private final CollectionRelRepository collectionRelRepository;
     private final IngredientRepository ingredientRepository;
     private final IngredientConverter ingredientConverter;
     private final ProductConverter productConverter;
@@ -42,6 +43,8 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void deleteRecipe(Long id) {
+        collectionRelRepository.deleteByRecipeId(id);
+        ingredientRepository.deleteByRecipeId(id);
         recipeRepository.deleteById(id);
     }
 
@@ -55,7 +58,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeFullDto fullInfoById(Long id) {
-      return   recipeConverter.fromRecipeToRecipeFullDto(recipeRepository.findById(id).get(), ingredientRepository.findByRecipeId(id).stream().map(ingredientConverter::toIngredientNameDto).collect(Collectors.toList()));
+        return recipeConverter.fromRecipeToRecipeFullDto(recipeRepository.findById(id).get(), ingredientRepository.findByRecipeId(id).stream().map(ingredientConverter::toIngredientNameDto).collect(Collectors.toList()));
     }
 
 

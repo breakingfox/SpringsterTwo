@@ -16,13 +16,13 @@ import java.util.List;
 @Log
 public class IngredientController {
     private final IngredientService ingredientService;
-
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PostMapping("/save")
     public IngredientDto saveIngredient(@RequestBody IngredientDto ingredientDto) throws ValidationException {
         log.info("Handling save ingredient: " + ingredientDto);
         return ingredientService.saveIngredient(ingredientDto);
     }
-
+    @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping("/findAll")
     public List<IngredientDto> findAllUsers() {
         log.info("Handling find all ingredients request");
@@ -34,7 +34,7 @@ public class IngredientController {
 //        log.info("Handling find by name of the ingredient request: " + recipe_id);
 //        return ingredientService.findByRecipe_id(recipe_id);
 //    }
-
+@CrossOrigin(origins = "http://localhost:8080/")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUsers(@PathVariable Long id) {
         log.info("Handling delete ingredient request: " + id);

@@ -46,4 +46,9 @@ public class CollectionServiceImpl implements CollectionService {
         CollectionRel savedCollection = collectionRelRepository.saveAndFlush(collectionRel);
         return savedCollection;
     }
+
+    @Override
+    public void deleteFromCOllectionByRecipeId(Long col_id, Long recipe_id) {
+        collectionRelRepository.deleteFromCollectionByRecipeId(col_id, recipe_id);
+    }
 }

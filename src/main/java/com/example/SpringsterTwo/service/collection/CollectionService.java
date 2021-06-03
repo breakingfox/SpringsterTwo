@@ -11,4 +11,5 @@ public interface CollectionService {
      List<CollectionDto> findColByUserId(Long id);
      Collection saveCollection(Collection collection);
      CollectionRel addRecipe(CollectionRel collectionRel);
+     void deleteFromCOllectionByRecipeId(Long col_id, Long recipe_id);
 }

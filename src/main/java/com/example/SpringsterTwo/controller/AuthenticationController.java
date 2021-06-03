@@ -13,10 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,9 +30,9 @@ public class AuthenticationController {
     private UserRepository userRepository;
     private JwtTokenProvider jwtTokenProvider;
 
-//TODO  сделать проверку или по логину или по почте; сейчас работает только по логину
+    //TODO  сделать проверку или по логину или по почте; сейчас работает только по логину
 //TODO сделать регистрацию и при регистрации пароль кодировать  через bcrypt с силой 12
-
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequestDTO request) {
         try {
@@ -56,7 +53,7 @@ public class AuthenticationController {
             return new ResponseEntity<>("Invalid email/password combination", HttpStatus.FORBIDDEN);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PostMapping("/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
