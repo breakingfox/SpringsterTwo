@@ -11,6 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CollectionRelRepository extends JpaRepository<CollectionRel, Long> {
     @Modifying
     @Transactional
+    @Query("delete from CollectionRel where collectionId=?1")
+    void deleteByCollectionId(Long id);
+
+    @Modifying
+    @Transactional
     @Query("delete from CollectionRel where  recipeId=?1")
     void deleteByRecipeId(Long recipe_id);
 

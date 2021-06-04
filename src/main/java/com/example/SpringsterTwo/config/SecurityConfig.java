@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/").permitAll()
                 //TODO убрать для авторизации
                 .antMatchers("/**").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/registration").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

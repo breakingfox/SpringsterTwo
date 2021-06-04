@@ -7,9 +7,11 @@ import com.example.SpringsterTwo.entity.CollectionRel;
 import java.util.List;
 
 public interface CollectionService {
+     List<CollectionDto> findAll();
      CollectionDto findRecipeByCollectionId(Long id);
      List<CollectionDto> findColByUserId(Long id);
      Collection saveCollection(Collection collection);
      CollectionRel addRecipe(CollectionRel collectionRel);
-     void deleteFromCOllectionByRecipeId(Long col_id, Long recipe_id);
+     void deleteFromCollectionByRecipeId(Long col_id, Long recipe_id);
+     void deleteCollection(Long id);
 }

@@ -26,9 +26,11 @@ public class UserConverter {
                 firstName(user.getFirstName()).
                 id(user.getId()).
                 lastName(user.getLastName()).
+
                 password(user.getPassword()).
                 role(user.getRole()).
-                status(user.getStatus()).
-                build();
+                status(user.getStatus())
+                .username(user.getUsername())
+                .build();
     }
 }

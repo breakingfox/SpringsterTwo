@@ -25,13 +25,27 @@ public class CollectionServiceImpl implements CollectionService {
     }
 
     @Override
+    public List<CollectionDto> findAll() {
+        List<Long> list = collectionRepository.findAll().stream().map(Collection::getId).collect(Collectors.toList());
+        List<CollectionDto> collections = new LinkedList<>();
+        for (Long i : list) {
+            collections.add(findRecipeByCollectionId(i));
+        }
+        for (int i = 0; i < list.size(); i++)
+            collections.get(i).setId(list.get(i));
+        return collections;
+    }
+
+    @Override
     public List<CollectionDto> findColByUserId(Long id) {
         List<Long> list = collectionRepository.findAllByUserId(id).stream().map(Collection::getId).collect(Collectors.toList());
-        List<CollectionDto> collectionDtos = new LinkedList<CollectionDto>();
+        List<CollectionDto> collections = new LinkedList<>();
         for (Long i : list) {
-            collectionDtos.add(findRecipeByCollectionId(i));
+            collections.add(findRecipeByCollectionId(i));
         }
-        return collectionDtos;
+        for (int i = 0; i < list.size(); i++)
+            collections.get(i).setId(list.get(i));
+        return collections;
     }
 
     @Override
@@ -48,7 +62,14 @@ public class CollectionServiceImpl implements CollectionService {
     }
 
     @Override
-    public void deleteFromCOllectionByRecipeId(Long col_id, Long recipe_id) {
+    public void deleteFromCollectionByRecipeId(Long col_id, Long recipe_id) {
         collectionRelRepository.deleteFromCollectionByRecipeId(col_id, recipe_id);
     }
+
+    @Override
+    public void deleteCollection(Long id) {
+        collectionRelRepository.deleteByCollectionId(id);
+        collectionRepository.deleteById(id);
+    }
+
 }

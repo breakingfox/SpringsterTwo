@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CollectionController {
     private final CollectionService collectionService;
+
     @CrossOrigin(origins = "http://localhost:8080/")
     @PostMapping("/addCollection")
     public Collection saveCollection(@RequestBody Collection collection) throws ValidationException {
@@ -32,21 +33,38 @@ public class CollectionController {
         log.info("Handling saving full recipe: " + collectionRel);
         return collectionService.addRecipe(collectionRel);
     }
+
     @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping("/find/{id}")
     public CollectionDto findCollection(@PathVariable Long id) {
         return collectionService.findRecipeByCollectionId(id);
     }
+
     @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping("/findUserCol/{id}")
     public List<CollectionDto> findColByUserId(@PathVariable Long id) {
         return collectionService.findColByUserId(id);
     }
+
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @GetMapping("/findAll")
+    public List<CollectionDto> findAll() {
+        return collectionService.findAll();
+    }
+
     @CrossOrigin(origins = "http://localhost:8080/")
     @DeleteMapping("/delete/{col_id}/{rec_id}")
-    public ResponseEntity<Void> deleteRecipeFromCollection(@PathVariable("col_id") Long col_id,@PathVariable("rec_id") Long rec_id) {
-        log.info("Handling delete recipe request: " + rec_id+" from collection "+ col_id);
-        collectionService.deleteFromCOllectionByRecipeId(col_id,rec_id);
+    public ResponseEntity<Void> deleteRecipeFromCollection(@PathVariable("col_id") Long col_id, @PathVariable("rec_id") Long rec_id) {
+        log.info("Handling delete recipe request: " + rec_id + " from collection " + col_id);
+        collectionService.deleteFromCollectionByRecipeId(col_id, rec_id);
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCollectionById(@PathVariable Long id) {
+        log.info("Deleting colection: " + id);
+        collectionService.deleteCollection(id);
         return ResponseEntity.ok().build();
     }
 }

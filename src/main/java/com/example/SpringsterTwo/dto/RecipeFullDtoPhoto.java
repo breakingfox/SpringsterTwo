@@ -37,15 +37,27 @@ public class RecipeFullDtoPhoto implements Serializable {
     //в рецепт не передаем айди для автоинкремента
     public Recipe toRecipe() throws Exception {
         ImgBBConverter converter = new ImgBBConverter();
-        return Recipe.builder()
-                .name(name)
-                .authorId(author_id)
-                .instruction(instruction)
-                .is_private(is_private)
-                .time(time)
-                .type(type)
-                .photo(converter.writeToStore(photo.getBytes()))
-                .build();
+        if (photo != null){
+            return Recipe.builder()
+                    .name(name)
+                    .authorId(author_id)
+                    .instruction(instruction)
+                    .is_private(is_private)
+                    .time(time)
+                    .type(type)
+                    .photo(converter.writeToStore(photo.getBytes()))
+                    .build();
+        } else{
+            return Recipe.builder()
+                    .name(name)
+                    .authorId(author_id)
+                    .instruction(instruction)
+                    .is_private(is_private)
+                    .time(time)
+                    .type(type)
+                    .photo(null)
+                    .build();
+        }
     }
 
     public RecipeFullDto fromRecipe(Recipe recipe, List<IngredientNameDto> ingredientDtos) {

@@ -47,7 +47,11 @@ public class AuthenticationController {
             String token = jwtTokenProvider.createToken(request.getUsername(), user.getRole().name());
             Map<Object, Object> response = new HashMap<>();
             response.put("username", user.getUsername());
+            response.put("id",user.getId());
+            response.put("role",user.getRole());
+
             response.put("token", token);
+
             return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
             return new ResponseEntity<>("Invalid email/password combination", HttpStatus.FORBIDDEN);

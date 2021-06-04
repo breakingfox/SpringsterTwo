@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class CollectionDto {
+    private Long id;
     private String collectionName;
     private List<RecipeFullDto> recipeFullDtos;
 

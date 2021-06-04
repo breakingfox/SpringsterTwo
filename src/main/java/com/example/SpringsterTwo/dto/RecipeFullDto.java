@@ -2,6 +2,7 @@ package com.example.SpringsterTwo.dto;
 
 import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.repository.RecipeRepository;
+import com.example.SpringsterTwo.repository.UserRepository;
 import com.example.SpringsterTwo.service.ImgBBConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +26,11 @@ public class RecipeFullDto implements Serializable {
     private String instruction;
     private Boolean is_private;
     private Long author_id;
+    private String username;
     private String photo;
     private List<IngredientNameDto> ingredientDtoList;
-//в рецепт не передаем айди для автоинкремента
+
+    //в рецепт не передаем айди для автоинкремента
     public Recipe toRecipe() throws Exception {
         ImgBBConverter converter = new ImgBBConverter();
         return Recipe.builder()
@@ -49,6 +52,7 @@ public class RecipeFullDto implements Serializable {
                 .instruction(recipe.getInstruction())
                 .is_private(recipe.getIs_private())
                 .time(recipe.getTime())
+               // .username(userRepository.findById(recipe.getAuthorId()).get().getUsername())
                 //уберем для теста
                 .photo(recipe.getPhoto())
                 .type(recipe.getType())

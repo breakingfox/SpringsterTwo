@@ -14,6 +14,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findTop9AllByIdAfter(Long id);
 
+
     String findPhotoById(Long id);
 
 }

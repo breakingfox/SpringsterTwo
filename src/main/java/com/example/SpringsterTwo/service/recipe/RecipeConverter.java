@@ -6,6 +6,7 @@ import com.example.SpringsterTwo.dto.RecipeFullDto;
 import com.example.SpringsterTwo.entity.Recipe;
 import com.example.SpringsterTwo.repository.IngredientRepository;
 import com.example.SpringsterTwo.repository.RecipeRepository;
+import com.example.SpringsterTwo.repository.UserRepository;
 import com.example.SpringsterTwo.service.ingredient.IngredientConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class RecipeConverter {
     private final IngredientRepository ingredientRepository;
     private final IngredientConverter ingredientConverter;
     private final RecipeRepository recipeRepository;
+    private UserRepository userRepository;
 
     public Recipe fromRecipeDtoToRecipe(RecipeDto recipeDto) {
         return Recipe.builder().id(recipeDto.getId())
@@ -41,6 +43,7 @@ public class RecipeConverter {
                 .instruction(recipe.getInstruction())
                 .is_private(recipe.getIs_private())
                 .time(recipe.getTime())
+                .username(userRepository.findById(recipe.getAuthorId()).get().getUsername())
                 //для теста пока уберем
                 .photo(recipeRepository.findById(recipe.getId()).get().getPhoto())
                 .type(recipe.getType())
